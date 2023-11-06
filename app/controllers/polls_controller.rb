@@ -1,10 +1,16 @@
+require 'securerandom'
+
 class PollsController < ApplicationController
   def show
-    render json: Poll.find(params[:id]) 
+    render json: Poll.find_by(pubId: params[:id]) 
   end
   
   def create
-    @poll = Poll.create!(poll_params)
+    @poll = Poll.new(poll_params)
+
+    @poll.pubId = SecureRandom::uuid
+
+    @poll.save
 
     params[:responses].each do |key, value|
       @poll.responses.create!(content: value)
