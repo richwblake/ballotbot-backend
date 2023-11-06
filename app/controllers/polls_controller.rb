@@ -1,8 +1,10 @@
 require 'securerandom'
 
 class PollsController < ApplicationController
+  before_action :set_poll, only: [:show, :update]
+
   def show
-    render json: Poll.find_by(pubId: params[:id]) 
+    render json: @poll 
   end
   
   def create
@@ -20,8 +22,6 @@ class PollsController < ApplicationController
   end
 
   def update
-    @poll = Poll.find(params[:id])
-
     @response = @poll.responses.find(params[:response][:id])
     @response.votes += 1
 
@@ -32,6 +32,10 @@ class PollsController < ApplicationController
   end
 
   private
+
+  def set_poll
+    @poll = Poll.find_by(pubId: params[:id])
+  end
 
   def poll_params
     params.require(:poll).permit(:title, :exp_s)  
