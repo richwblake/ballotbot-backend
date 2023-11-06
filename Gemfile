@@ -26,6 +26,9 @@ gem "puma", ">= 5.0"
 # Gem to serialize responses
 gem "active_model_serializers"
 
+# SHA hashing algorithm for hiding DB IDs
+gem "digest"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
