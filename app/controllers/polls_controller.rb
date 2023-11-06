@@ -6,6 +6,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.create!(poll_params)
 
+
     params[:responses].each do |key, value|
       @poll.responses.create!(content: value)
     end
@@ -16,7 +17,7 @@ class PollsController < ApplicationController
   private
 
   def poll_params
-    params.require(:poll).permit(:title)  
+    params.require(:poll).permit(:title, :exp_s)  
   end
 
 end
