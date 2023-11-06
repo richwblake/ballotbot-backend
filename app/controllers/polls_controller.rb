@@ -22,7 +22,7 @@ class PollsController < ApplicationController
   end
 
   def update
-    @response = @poll.responses.find(params[:response][:id])
+    @response = @poll.responses.find_by(pubId: params[:response][:id])
     @response.votes += 1
 
     @response.save
