@@ -14,6 +14,11 @@ class PollsController < ApplicationController
     render json: @poll
   end
 
+  def update
+    @poll = Poll.find(params[:id])
+    render json: @poll
+  end
+
   private
 
   def poll_params
