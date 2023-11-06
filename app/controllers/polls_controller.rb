@@ -15,7 +15,7 @@ class PollsController < ApplicationController
     @poll.save
 
     params[:responses].each do |key, value|
-      @poll.responses.create!(content: value)
+      @poll.responses.create!(content: value, pubId: SecureRandom::uuid)
     end
 
     render json: @poll
