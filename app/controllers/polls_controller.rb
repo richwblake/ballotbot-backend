@@ -6,7 +6,6 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.create!(poll_params)
 
-
     params[:responses].each do |key, value|
       @poll.responses.create!(content: value)
     end
@@ -16,7 +15,14 @@ class PollsController < ApplicationController
 
   def update
     @poll = Poll.find(params[:id])
+
+    @response = @poll.responses.find(params[:response][:id])
+    @response.votes += 1
+
+    @response.save
+
     render json: @poll
+
   end
 
   private

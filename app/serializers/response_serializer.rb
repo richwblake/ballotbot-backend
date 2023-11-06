@@ -1,3 +1,3 @@
 class ResponseSerializer < ActiveModel::Serializer
-  attributes :id, :content
+  attributes :id, :content, :votes
 end
