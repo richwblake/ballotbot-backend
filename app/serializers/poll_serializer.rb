@@ -3,6 +3,6 @@ class PollSerializer < ActiveModel::Serializer
   has_many :responses
 
   def seconds_since_creation
-    Time.now.to_i - Poll.first.created_at.to_i
+    Time.now.to_i - object.created_at.to_i
   end
 end

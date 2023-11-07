@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :polls, only: [:show, :create, :update]
+  options '/polls', to: 'polls#options'
 end

@@ -3,6 +3,11 @@ require 'securerandom'
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :update]
 
+  def options
+    headers["Access-Control-Allow-Methods"] = "POST"
+    headers["Access-Control-Allow-Origin"] = "*"
+  end
+
   def show
     render json: @poll 
   end
@@ -15,7 +20,7 @@ class PollsController < ApplicationController
     @poll.save
 
     params[:responses].each do |key, value|
-      @poll.responses.create!(content: value, pubId: SecureRandom::uuid)
+      @poll.responses.create!(content: key[:content], pubId: SecureRandom::uuid)
     end
 
     render json: @poll
