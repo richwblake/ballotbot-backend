@@ -17,6 +17,8 @@ class PollsController < ApplicationController
 
     @poll.pubId = SecureRandom::uuid
 
+    @poll.exp_s = params[:exp_s]
+
     @poll.save
 
     params[:responses].each do |key, value|
