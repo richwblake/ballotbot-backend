@@ -1,8 +1,8 @@
 class PollSerializer < ActiveModel::Serializer
-  attributes :pubId, :title, :seconds_since_creation, :exp_s
+  attributes :pubId, :title, :created_utc, :exp_s
   has_many :responses
 
-  def seconds_since_creation
-    Time.now.to_i - object.created_at.to_i
+  def created_utc
+    object.created_at.utc.iso8601
   end
 end
